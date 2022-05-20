@@ -1,0 +1,54 @@
+.kiteCss {
+    z-index: 1 ; 
+    position: absolute
+}
+h1{
+    color : #676F73;
+    font-size:  50px;
+    font-family: Roboto;
+}
+pre{
+    padding-left: 70px;
+    color : #676F73;
+    font-size:  20px;
+    font-family: Roboto;
+    text-align: left;
+}
+.btnApp{
+    width: 314px;
+    height: 83px;
+    background: #DAAD86;
+    border-radius: 30px;
+    color: white;
+    font-size: 20px;
+    font-family: Inter;
+    border: none;
+}
+.btnGT{
+    background: #659DBD;
+    border-radius: 30px;
+    color: white;
+    font-size: 30px;
+    font-family: Inter;
+}
+/* .btn-success{
+    width: 314px;
+    height: 83px;
+    background: #659DBD;
+    border-radius: 30px;
+    color: white;
+    font-size: 30px;
+    font-family: Inter;
+}
+.btn-success:hover{
+    width: 314px;
+    height: 83px;
+    background: #659DBD;
+    border-radius: 30px;
+    color: white;
+    font-size: 30px;
+    font-family: Inter;
+} */
+.btnCss{
+    margin-top: 20px;
+}

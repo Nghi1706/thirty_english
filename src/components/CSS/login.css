@@ -1,0 +1,51 @@
+.loginFrom{
+    padding-top: 100px;
+}
+input[type="email"], input[type="text"]{
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #42A1D8;
+}
+.forgotPW{
+    text-align: right;
+}
+p{
+    text-align: left;
+}
+.rowLogin{
+    height: 100vh;
+}
+.btnLogin{
+    margin: 20px;
+    width: 314px;
+    height: 83px;
+    background: #FFFFFF;
+    border-radius: 30px;
+    color: #659DBD;
+    font-size: 30px;
+    font-family: Inter;
+    border: 1px solid #659DBD;
+    border-radius: 30px;    
+    box-shadow: 2px 2px;
+}
+p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+
+    color: #000000;
+}
+.box{
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    display: table;
+    background-attachment: fixed;
+    background-image: url('../../img/BackgroundLogin.png');
+}
+.robot{
+    margin-bottom: 20%;
+}
