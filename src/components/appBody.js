@@ -3,7 +3,6 @@ import robot from '../img/robot.png';
 import kite from '../img/kite.png';
 import './CSS/appBody.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 export default function appBody() {
     return (
         <>
