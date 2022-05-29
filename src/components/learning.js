@@ -1,77 +1,46 @@
-import React from 'react'
-import './CSS/learning.css';
+import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import kite from '../img/kite.png';
 import { Carousel } from 'react-bootstrap';
-
-export default function learning() {
+import vocabularyAPI from '../api/vocavularyAPI';
+import { useLocation } from 'react-router-dom';
+import { useState } from 'react'
+const Learning = () => {
+    const location = useLocation();
+    const id = location.state.id;
+    const [allVocabulary, setAllVocabulary] = useState([]);
+    const searchAllVocabularyByID = async () => {
+        var data = await vocabularyAPI.getVocabularybyID(id);
+        if (data.status === 200) { setAllVocabulary(data.data); }
+        else {
+            alert("fetch data fail !");
+        }
+    }
+    useEffect(() => {
+        searchAllVocabularyByID();
+    }, [])
     return (
-        <div className='container-fluid'>
-            <div className='row'>
-                <div className='col-xl-4'>
-                    a
-                </div>
-                <div className='col-xl-4 learn'>
-                    <Carousel variant="dark" interval={null}>
-                        <Carousel.Item>
-                            <center>
-                                <div className="flip-card">
-                                    <div className="flip-card-inner">
-                                        <div className="flip-card-front">
-                                            <div style={{ width: '300px', height: '300px' }}>
-                                                <h1>One</h1>
-                                            </div>
-                                        </div>
-                                        <div className="flip-card-back">
-                                            <h1>/wʌn/</h1>
-                                            <p>Do you want one or two?<br /></p>
-                                            <p>There's only room for one person.<br /></p>
-                                            <p>One more, please<br /></p>
-                                        </div>
-                                    </div>
+        <Carousel variant="dark" interval={null}>
+            {allVocabulary.map((vocabulary) => (
+                <Carousel.Item>
+                    <center>
+                        <div className="flip-card">
+                            <div className="flip-card-inner">
+                                <div className="flip-card-front p-2">
+                                    <h1 style={{ color: 'red', fontWeight: 'bold' }}>{vocabulary.ensWord + " (" + vocabulary.wordType + ")"}</h1>
+                                    <h2>{vocabulary.spelling}</h2>
                                 </div>
-                            </center>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <center>
-                                <div className="flip-card">
-                                    <div className="flip-card-inner">
-                                        <div className="flip-card-front">
-                                            <img src={kite} alt="Avatar" style={{ width: '300px', height: '300px' }} />
-                                        </div>
-                                        <div className="flip-card-back">
-                                            <h1>John Doe</h1>
-                                            <p>Architect & Engineer</p>
-                                            <p>We love that guy</p>
-                                        </div>
-                                    </div>
+                                <div className="flip-card-back p-2">
+                                    <h4>{"Mean: " + vocabulary.vnWord}</h4>
+                                    <h5 style={{textAlign:"left"}}>{"Exp : " + vocabulary.example}</h5>
                                 </div>
-                            </center>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <center>
-                                <div className="flip-card">
-                                    <div className="flip-card-inner">
-                                        <div className="flip-card-front">
-                                            <img src={kite} alt="Avatar" style={{ width: '300px', height: '300px' }} />
-                                        </div>
-                                        <div className="flip-card-back">
-                                            <h1>John Doe</h1>
-                                            <p>Architect & Engineer</p>
-                                            <p>We love that guy</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </center>
-                        </Carousel.Item>
+                            </div>
+                        </div>
+                    </center>
+                </Carousel.Item>
+            ))}
 
-                    </Carousel>
-                </div>
-                <div className='col-xl-4'>
-                    b
-                </div>
-            </div>
-
-        </div>
+        </Carousel>
     )
 }
+
+export default Learning

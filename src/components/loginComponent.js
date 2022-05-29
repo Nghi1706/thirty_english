@@ -20,20 +20,35 @@ export default function LoginComponent() {
             "email": email,
             "password": password
         }
-        var data = await account.login(params);
-        if (data.status === 200) {
-            setLoading(false);
-            localStorage.setItem('role', data.data)
-            console.log(data.data);
-            if (data.data === 'admin') { window.location = "/employeeManager"; }
-            else if (data.data === 'teacher' || data.data === 'student') { window.location = "/"; }
+        try {
+            var data = await account.login(params);
+            if (data.status === 200) {
+                setLoading(false);
+                localStorage.setItem('role', data.data)
+                console.log(data.data);
+                if (data.data === 'admin') { window.location = "/employeeManager"; }
+                else if (data.data === 'teacher') {
+                    window.location = "/CoursesTeacher"
+                    localStorage.setItem('email', email)
+                }
+                else if (data.data === 'student') {
+                    window.location = "/";
+                    localStorage.setItem('email', email)
+                }
 
-            else { window.alert("Login fail !") }
+                else { window.alert("Login fail !") }
+            }
+            else {
+                setLoading(false);
+                window.alert("Login fail !")
+            }
         }
-        else {
+        catch (err) {
             setLoading(false);
             window.alert("Login fail !")
         }
+
+
     }
     return (
 

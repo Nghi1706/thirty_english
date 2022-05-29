@@ -2,46 +2,19 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 import './CSS/navbarAdmin.css'
-const navbarAmin = () => {
+const NavbarAdmin = () => {
     return (
         <div id="sidebar">
             <header>
-                <Link to="#" className='linkcss'>My App</Link>
+                <Link to="#" className='linkcss'>Management</Link>
             </header>
-            <ul class="nav">
+            <ul className="nav">
                 <li className='liCss'>
-                    <Link to="#" className='linkcss'>
-                        <i class="zmdi zmdi-view-dashboard"></i> Dashboard
+                    <Link to="/employeeManager" className='linkcss'>
+                        <i className="zmdi zmdi-view-dashboard"></i> Account
                     </Link>
-                </li>
-                <li className='liCss'>
-                    <Link to="#" className='linkcss'>
-                        <i class="zmdi zmdi-link"></i> Shortcuts
-                    </Link>
-                </li>
-                <li className='liCss'>
-                    <Link to="#" className='linkcss'>
-                        <i class="zmdi zmdi-widgets"></i> Overview
-                    </Link>
-                </li>
-                <li className='liCss'>
-                    <Link to="#" className='linkcss'>
-                        <i class="zmdi zmdi-calendar"></i> Events
-                    </Link>
-                </li>
-                <li className='liCss'>
-                    <Link to="#" className='linkcss'>
-                        <i class="zmdi zmdi-info-outline"></i> About
-                    </Link>
-                </li>
-                <li className='liCss'>
-                    <Link to="#" className='linkcss'>
-                        <i class="zmdi zmdi-settings"></i> Services
-                    </Link>
-                </li>
-                <li className='liCss'>
-                    <Link to="#" className='linkcss'>
-                        <i class="zmdi zmdi-comment-more"></i> Contact
+                    <Link to="/CoursesAdmin" className='linkcss'>
+                        <i className="zmdi zmdi-view-dashboard"></i> Course
                     </Link>
                 </li>
             </ul>
@@ -49,4 +22,24 @@ const navbarAmin = () => {
     )
 }
 
-export default navbarAmin
+const NavbarTeacher = () => {
+    return (
+        <div id="sidebar">
+            <header>
+                <Link to="#" className='linkcss'>Teaching</Link>
+            </header>
+            <ul className="nav">
+                <li className='liCss'>
+                    <Link to="/VocabularyPacks" className='linkcss'>
+                        <i className="zmdi zmdi-view-dashboard"></i> Pack Vocabulary
+                    </Link>
+                    <Link to="/CoursesTeacher" className='linkcss'>
+                        <i className="zmdi zmdi-view-dashboard"></i> Courses
+                    </Link>
+                </li>
+            </ul>
+        </div>
+    )
+}
+
+export { NavbarTeacher, NavbarAdmin }

@@ -5,12 +5,11 @@
     display: table;
     background-attachment: fixed;
     background-image: url('../../img/backgroundCourse.png');
-    padding: 2.5%;
 }
 .courses{
     align-self : center;
     width: 70%;
-    height: 80vh;
+    min-height: 60vh;
     background-color: white;
     border-radius: 20px;
     padding : 20px;

@@ -1,0 +1,44 @@
+.courseDiv{
+    width: 95%;
+    border: 2px solid #455A64;
+    min-height: 150px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #455A64;
+    /* padding : 20px; */
+}
+.courseHeader{
+    min-height: 50px;
+    text-align: center;
+    font-size: 25px;
+    color: white;
+    padding: 0px auto;
+}
+.courseBody{
+    align-items: center;
+    background-color: white;
+    display: flex;
+    width: 100%;
+    padding: 10px;
+}
+.courseBodyfinal{
+    background-color: white;
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.buttonStyle{
+    width : 100%;
+    height: 50px;
+    margin: 0px auto;
+    border-radius: 10px;
+    border: none;
+    background-color: #ffd0cc;
+    box-shadow: 5px 5px 5px;
+    font-weight: bold;
+}
+.buttonStyle:active{
+    color: white;
+}

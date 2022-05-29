@@ -1,0 +1,39 @@
+.myCourse{
+    width : 80%;
+    height: 150px;
+    background-color: #659DBD;
+    border-radius: 20px;
+}
+.headerMyCourse{
+    width: 100%;
+    display: inline-block;
+    height: 10%;
+    font-size: 25px;
+    color : white;
+    font-weight: bold;
+}
+.bodyMyCourse{
+    width: 100%;
+    display: inline-block;
+    height: 50% ;
+    line-height: 75px;
+    font-size: 15px;
+    color : white;
+}
+.footerMyCourse{   
+    width: 100%;
+    display: inline-block;
+
+    height: 20%;
+    padding: 5px;
+
+}
+.buttonMyCourse{
+    background-color: white;
+    color: #659DBD;
+    text-decoration: none;
+    width: 70%;
+    height: 90%;
+    border-radius: 5px;
+    border: none;
+}

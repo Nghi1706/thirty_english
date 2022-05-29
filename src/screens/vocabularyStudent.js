@@ -1,5 +1,5 @@
 import React from 'react'
-import Learning from '../components/learning'
+import Learning from '../components/vocabularyStudent'
 
 export default function learning() {
     return (

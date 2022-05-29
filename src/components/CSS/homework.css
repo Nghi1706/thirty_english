@@ -1,0 +1,16 @@
+.homeworkDiv{
+    width: 60%;
+    height : 60px;
+    background-color: #659DBD;
+    line-height: 60px;
+    border-radius: 25px;
+    color: white;
+    font-size: 25px;
+    box-shadow: 5px 5px 5px black;
+    margin-top: 20px;
+
+}
+.homeworkDiv:active{
+    color: red;
+    box-shadow: none;
+}
