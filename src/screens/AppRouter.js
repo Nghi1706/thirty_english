@@ -21,23 +21,24 @@ import UploadVideo from './uploadVideo';
 import MyCourses from './myCourses';
 import HomeworksTeacher from './homeworksTeacher';
 import InfoHomeworkTeacher from './infoHomeworkTeacher';
+import MyHomework from './myHomework';
 export default function AppRouter() {
     var role = localStorage.getItem('role');
     return (
         <>
             <Routes>
                 <Route path="/Login" element={<Login />} />
+                <Route path="/Courses" element={<Courses />} />
+                <Route path="/" element={<App />} />
+                <Route path="/Register" element={<Register />} />
+                <Route path="/Blog" element={<Blog />} />
                 {/* student */}
-                <Route path="/" element={(role === 'student') ? <App /> : <Login />} />
-                <Route path="/Blog" element={(role === 'student') ? <Blog /> : <Login />} />
-                <Route path="/Courses" element={(role === 'student') ? <Courses /> : <Login />} />
                 <Route path="/ForLecturers" element={(role === 'student') ? <ForLecturers /> : <Login />} />
-                <Route path="/Register" element={(role === 'student') ? <Register /> : <Login />} />
-                <Route path="/Information" element={(role === 'student') ? <Information /> : <Login />} />
                 <Route path="/Learning" element={(role === 'student') ? <Learning /> : <Login />} />
                 <Route path="/VocabularyPacksS" element={(role === 'student') ? <VocabularyStudent /> : <Login />} />
                 <Route path="/VocabularyPartS" element={(role === 'student') ? <VocabularyPartStudent /> : <Login />} />
                 <Route path="/MyCourses" element={(role === 'student') ? <MyCourses /> : <Login />} />
+                <Route path="/Homeworks" element={(role === 'student') ? <MyHomework /> : <Login />} />
                 {/* admin */}
                 <Route path="/CoursesAdmin" element={(role === 'admin') ? <CourseAdmin /> : <Login />} />
                 <Route path="/EmployeeManager" element={(role === 'admin') ? <EmployeeManager /> : <Login />} />

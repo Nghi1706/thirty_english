@@ -1,7 +1,7 @@
 .loginFrom{
     padding-top: 100px;
 }
-input[type="email"], input[type="text"],input[type="file"]{
+input[type="email"], input[type="text"],input[type="file"],input[type="password"]{
     border-radius: 10px;
     margin-top: 20px;
     margin-bottom: 20px;

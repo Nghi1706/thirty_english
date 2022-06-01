@@ -3,7 +3,10 @@ import robot from '../img/robot.png';
 import kite from '../img/kite.png';
 import './CSS/appBody.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom";
+
 export default function appBody() {
+    const role = localStorage.getItem('role');
     return (
         <>
             <div className='container-fluid'>
@@ -31,12 +34,8 @@ export default function appBody() {
                                     you, by English teaching experts
                                 </pre>
                             </div>
-
                             <div className='btnCss'>
-                                <button type="button" className=' btnApp'>Site Language:</button>
-                            </div>
-                            <div className='btnCss'>
-                                <button type="button" className=' btnApp btnGT'>Get Started</button>
+                                <Link to={(role !== 'student') ? '/Login' : '#'} style={{ textDecoration: 'none' }}><button type="button" className=' btnApp btnGT'>Get Started</button></Link>
                             </div>
 
                         </center>

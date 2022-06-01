@@ -11,9 +11,10 @@ import { Link } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-
+import Header from './header';
 
 export default function CoursesBody() {
+    const role = localStorage.getItem('role');
     const email = localStorage.getItem('email');
     const [show, setShow] = useState(false);
     const [courseName, setCourseName] = useState('');
@@ -57,12 +58,7 @@ export default function CoursesBody() {
 
         <div className='container-fluid contain'>
             <div className='row'>
-                <div className='col-xl-1 p-3'>
-                    <Link to={'/'} className="btn btn-light">back</Link>
-                </div>
-                <div className='col-xl-11'>
-
-                </div>
+                <Header />
             </div>
             <div className='row mt-5'>
 
@@ -70,26 +66,34 @@ export default function CoursesBody() {
                     <>
                         <div className='col-xl-3 align-self-center'>
                             <center>
-                                <div className='courses ' onClick={() => { handleShow(); setCourseName(course.name); setCourseID(course.id) }}>
+                                <div className='courses ' onClick={(role === 'student') ? () => { handleShow(); setCourseName(course.name); setCourseID(course.id) } : () => { window.location = '/Login' }}>
                                     <div className='coursesHead'>
-                                        <img
+                                        {course.name === 'Communication' ? <img
                                             alt=""
-                                            src={img[index]}
+                                            src={img[0]}
                                             className='imgCss'
-                                        />
+                                        /> : (course.name === 'Toeic' ? <img
+                                            alt=""
+                                            src={img[1]}
+                                            className='imgCss'
+                                        /> : (course.name === 'Toefl') ? <img
+                                            alt=""
+                                            src={img[3]}
+                                            className='imgCss'
+                                        /> : <img
+                                            alt=""
+                                            src={img[2]}
+                                            className='imgCss'
+                                        />)}
+
 
                                     </div>
                                     <div className='coursesTitle'>
                                         <h5>{course.name}</h5>
                                     </div>
                                     <div className='coursesBody'>
-                                        <li>Good teacher</li>
-                                        <li>Pronunciation</li>
-                                        <li>Speaking</li>
-                                        <li>Improve vocabulary</li>
-                                        <li>More confident</li>
-                                        {course.categoryName.map((category) => (
-                                            <li>{category}</li>
+                                        {course.description.split('|').map((description) => (
+                                            <li>{description}</li>
                                         ))}
                                     </div>
                                 </div>

@@ -45,3 +45,9 @@
     margin-top: 200px;
     align-self: center;
   }
+  .carousel-control-next{
+    margin: -20px;
+  }
+  .carousel-control-prev{
+    margin: -20px;
+  }

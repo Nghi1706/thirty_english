@@ -9,7 +9,7 @@
 .courses{
     align-self : center;
     width: 70%;
-    min-height: 60vh;
+    height: 80vh;
     background-color: white;
     border-radius: 20px;
     padding : 20px;

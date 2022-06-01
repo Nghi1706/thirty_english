@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import logo from '../img/logo.png';
 import './CSS/header.css';
 function header() {
+    const role = localStorage.getItem('role');
     const itemHeader = {
         color: "white",
         minWidth: 100,
@@ -43,14 +44,26 @@ function header() {
                     <span style={textLogo}>Thirty English</span>
 
                 </Navbar.Brand>
-                <Nav style={navSelection}>
-                    <Link to='/Courses' style={itemHeader}>Courses</Link>
-                    <Link to="/VocabularyPacksS" style={itemHeader}>Vocabulary</Link>
-                    <Link to="/Blog" style={itemHeader}>Blog</Link>
-                    <Link to="/ForLecturers" style={itemHeader}>For Lectures</Link>
-                    <Link to="/myCourses" style={itemHeader}>My Courses</Link>
-                    <Link to="/Register" style={itemHeader}>Register</Link>
-                </Nav>
+                {role === 'student' ? (
+                    <Nav style={navSelection}>
+                        <Link to='/Courses' style={itemHeader}>Courses</Link>
+                        <Link to="/VocabularyPacksS" style={itemHeader}>Vocabulary</Link>
+                        <Link to="/Blog" style={itemHeader}>Blog</Link>
+                        <Link to="/ForLecturers" style={itemHeader}>For Lectures</Link>
+                        <Link to="/myCourses" style={itemHeader}>My Courses</Link>
+                        <Link to="/Register" style={itemHeader}>Register</Link>
+                        <Link to="/Login" style={itemHeader}>Logout</Link>
+                    </Nav>
+                ) :
+                    (
+                        <Nav style={navSelection}>
+                            <Link to='/Courses' style={itemHeader}>Courses</Link>
+                            <Link to="/Blog" style={itemHeader}>Blog</Link>
+                            <Link to="/Login" style={itemHeader}>For Lectures</Link>
+                            <Link to="/Register" style={itemHeader}>Register</Link>
+                        </Nav>
+                    )}
+
             </Navbar>
         </>
     )

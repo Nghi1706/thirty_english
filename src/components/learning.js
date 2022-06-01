@@ -19,19 +19,19 @@ const Learning = () => {
         searchAllVocabularyByID();
     }, [])
     return (
-        <Carousel variant="dark" interval={null}>
+        <Carousel variant="dark" interval={null} indicators={true}>
             {allVocabulary.map((vocabulary) => (
                 <Carousel.Item>
                     <center>
                         <div className="flip-card">
                             <div className="flip-card-inner">
-                                <div className="flip-card-front p-2">
+                                <div className="flip-card-front p-2 pt-4">
                                     <h1 style={{ color: 'red', fontWeight: 'bold' }}>{vocabulary.ensWord + " (" + vocabulary.wordType + ")"}</h1>
                                     <h2>{vocabulary.spelling}</h2>
                                 </div>
-                                <div className="flip-card-back p-2">
+                                <div className="flip-card-back p-2 pt-4 pl-2">
                                     <h4>{"Mean: " + vocabulary.vnWord}</h4>
-                                    <h5 style={{textAlign:"left"}}>{"Exp : " + vocabulary.example}</h5>
+                                    <h5 style={{ textAlign: "left", marginLeft: '15px' }}>{"Exp : " + vocabulary.example}</h5>
                                 </div>
                             </div>
                         </div>

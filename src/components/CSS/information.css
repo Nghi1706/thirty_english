@@ -1,15 +1,15 @@
 .containInfo{
+    
     height: 100vh;
     width: 100%;
     background-size: cover;
     display: table;
     background-attachment: fixed;
     background-color: #071E44E5;
-    padding: 2.5%;
 }
 .rowInfo{
     height: 20%;
-    width: 100%;
+    width: 95%;
     background-color: white;
     align-self: center;
     padding: 0px auto;

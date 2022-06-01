@@ -5,6 +5,7 @@ import './CSS/register.css';
 import imgRegister from '../img/registerIMG.png';
 import { useState } from 'react'
 import account from '../api/accountAPI';
+import { Link } from 'react-router-dom';
 
 export default function RegisterBody() {
     const [dataObject, setdata] = useState({ email: '', fullname: '', password: '', phone: '', role: 0 });
@@ -33,7 +34,9 @@ export default function RegisterBody() {
             <div className='row'>
                 <div className='col-xl-6 formRegis'>
                     <center>
-                        <img className="rounded-circle" alt="logo" src={logo} width='130' />
+                        <Link to={'/'}>
+                            <img className="rounded-circle" alt="logo" src={logo} width='130' />
+                        </Link>
                         <form>
                             <div className='form-group'>
                                 <input type="email" className="form-control" id="email" placeholder="Email" aceholder="Enter a message"

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // import backgroundImg from '../img/BackgroundLogin.png'
 import logo from '../img/logo.png'
 import './CSS/login.css'
@@ -14,6 +14,7 @@ export default function LoginComponent() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+
     async function login() {
         setLoading(true);
         var params = {
@@ -48,8 +49,11 @@ export default function LoginComponent() {
             window.alert("Login fail !")
         }
 
-
     }
+    useEffect(() => {
+        localStorage.clear();
+    }, [])
+
     return (
 
 
@@ -71,7 +75,9 @@ export default function LoginComponent() {
                     </div>
                     <div className='col-xl-5 loginFrom'>
                         <center>
-                            <img className="rounded-circle" alt="logo" src={logo} width='130' />
+                            <Link to={'/'}>
+                                <img className="rounded-circle" alt="logo" src={logo} width='130' />
+                            </Link>
                             <form>
                                 <div className='form-group'>
                                     <input type="email" className="form-control" name="email" placeholder="Email" onChange={event => setEmail(event.target.value)} />
