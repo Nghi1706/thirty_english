@@ -23,6 +23,7 @@ import InfoHomeworkTeacher from './infoHomeworkTeacher';
 import MyHomework from './myHomework';
 import Payment from './payment';
 import DoHomework from './doHomework';
+import HomeworkResult from './homeworkResult';
 export default function AppRouter() {
     var role = localStorage.getItem('role');
     return (
@@ -34,6 +35,7 @@ export default function AppRouter() {
                 <Route path="/Register" element={<Register />} />
                 <Route path="/Blog" element={<Blog />} />
                 {/* student */}
+                <Route path="/HomeworkResult" element={(role === 'student') ? <HomeworkResult /> : <Login />} />
                 <Route path="/DoHomework" element={(role === 'student') ? <DoHomework /> : <Login />} />
                 <Route path="/ForLecturers" element={(role === 'student') ? <ForLecturers /> : <Login />} />
                 <Route path="/Learning" element={(role === 'student') ? <Learning /> : <Login />} />

@@ -31,9 +31,12 @@ const DoHomework = () => {
         };
         console.log(dataCreate)
         try {
-            var newQuestion = await homeworksAPI.createHomeworkResult(dataCreate);
-            if (newQuestion.status === 200) {
-                alert("Submit success !")
+            var submitHomework = await homeworksAPI.createHomeworkResult(dataCreate);
+            if (submitHomework.status === 200) {
+                if (window.confirm(`Account: ${submitHomework.data.studentUsername}\nGet: ${submitHomework.data.point.toFixed(2)} point`) === true) {
+                    localStorage.setItem('homeworkResult', JSON.stringify(submitHomework.data));
+                    window.location = '/HomeworkResult'
+                }
             }
             else {
                 alert("Submit fail !")
