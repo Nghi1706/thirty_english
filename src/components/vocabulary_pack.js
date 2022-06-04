@@ -7,21 +7,25 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { Packs } from './helperVolcabulary';
-import {HeaderTeacher} from './headerTeacher';
+import { useLocation } from 'react-router-dom';
+import { HeaderTeacher } from './headerTeacher';
 
 const VocabularyPack = () => {
+    const location = useLocation();
+    const id = location.state.idCourseLevel;
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [isReload, setReload] = useState(false);
     const [name, setName] = useState('');
-    const [dataCreate, setCreate] = useState({ name: "", teachName: "" });
+    const [dataCreate, setCreate] = useState({ name: "", teachName: "", courseLevelId: id });
     const [allVocabulary, setAllVocabulary] = useState([]);
     const searchPacks = () => {
         console.log(name);
     }
     const searchAllPacks = async () => {
-        var data = await vocabularyAPI.gelAllVocabularyPacks();
+        console.log(id)
+        var data = await vocabularyAPI.getPackByCourseLevelId(id);
         if (data.status === 200) { setAllVocabulary(data.data); }
         else {
             alert("fetch data fail !");
@@ -47,8 +51,8 @@ const VocabularyPack = () => {
                     <NavbarTeacher />
                 </div>
                 <div className='col-xl-10'>
-                    <div className='row' style={{ padding: '20px', height: '80px' }}>
-                        <HeaderTeacher setValue={setName} search={searchPacks} handleShow={handleShow} buttonName={"Create Pack"} />
+                    <div className='row' style={{ padding: '20px', height: '80px', marginTop: '0px' }}>
+                        <HeaderTeacher setValue={setName} search={searchPacks} handleShow={handleShow} id={id} buttonName={"Create Pack"} />
 
                         <Packs allVocabulary={allVocabulary} isTeacher={true} />
                     </div>

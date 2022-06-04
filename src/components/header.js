@@ -47,7 +47,7 @@ function header() {
                 {role === 'student' ? (
                     <Nav style={navSelection}>
                         <Link to='/Courses' style={itemHeader}>Courses</Link>
-                        <Link to="/VocabularyPacksS" style={itemHeader}>Vocabulary</Link>
+                        {/* <Link to="/VocabularyPacksS" style={itemHeader}>Vocabulary</Link> */}
                         <Link to="/Blog" style={itemHeader}>Blog</Link>
                         <Link to="/ForLecturers" style={itemHeader}>For Lectures</Link>
                         <Link to="/myCourses" style={itemHeader}>My Courses</Link>

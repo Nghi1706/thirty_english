@@ -24,6 +24,10 @@ const vocabularyAPI = {
         const url = 'vocabulary/createVocabulary';
         return axiosRequest.post(url, params);
     },
+    getPackByCourseLevelId: (string) => {
+        const url = 'vocabularyPack/getVocabularyPacksByCourseLevelId/' + string;
+        return axiosRequest.get(url);
+    },
 
 }
 export default vocabularyAPI

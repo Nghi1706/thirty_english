@@ -6,7 +6,6 @@ import Courses from './courses';
 import ForLecturers from './forLecturers';
 import Register from './register';
 import Login from './login';
-import Information from './information'
 import Learning from './vocabularyStudent'
 import EmployeeManager from './employeeManager';
 import UpLoadCourse from './upLoadCourse';
@@ -22,6 +21,8 @@ import MyCourses from './myCourses';
 import HomeworksTeacher from './homeworksTeacher';
 import InfoHomeworkTeacher from './infoHomeworkTeacher';
 import MyHomework from './myHomework';
+import Payment from './payment';
+import DoHomework from './doHomework';
 export default function AppRouter() {
     var role = localStorage.getItem('role');
     return (
@@ -33,12 +34,14 @@ export default function AppRouter() {
                 <Route path="/Register" element={<Register />} />
                 <Route path="/Blog" element={<Blog />} />
                 {/* student */}
+                <Route path="/DoHomework" element={(role === 'student') ? <DoHomework /> : <Login />} />
                 <Route path="/ForLecturers" element={(role === 'student') ? <ForLecturers /> : <Login />} />
                 <Route path="/Learning" element={(role === 'student') ? <Learning /> : <Login />} />
                 <Route path="/VocabularyPacksS" element={(role === 'student') ? <VocabularyStudent /> : <Login />} />
                 <Route path="/VocabularyPartS" element={(role === 'student') ? <VocabularyPartStudent /> : <Login />} />
                 <Route path="/MyCourses" element={(role === 'student') ? <MyCourses /> : <Login />} />
                 <Route path="/Homeworks" element={(role === 'student') ? <MyHomework /> : <Login />} />
+                <Route path="/Payment" element={(role === 'student') ? <Payment /> : <Login />} />
                 {/* admin */}
                 <Route path="/CoursesAdmin" element={(role === 'admin') ? <CourseAdmin /> : <Login />} />
                 <Route path="/EmployeeManager" element={(role === 'admin') ? <EmployeeManager /> : <Login />} />

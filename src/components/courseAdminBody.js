@@ -11,9 +11,14 @@ const CourseAdminBody = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [showLevel, setShowLevel] = useState(false);
+    const handleCloseLevel = () => setShowLevel(false);
+    const handleShowLevel = () => setShowLevel(true);
     const [category, setCategory] = useState([])
     const [course, setCourse] = useState([])
+    const [nameCourse, setNameCourse] = useState('')
     const [dataCreate, setCreate] = useState({ name: "", categoties: [], description: "" });
+    const [dataCreateLevel, setCreateLevel] = useState({ name: "", description: "", price: 0, courseId: '' });
     const [isReload, setReload] = useState(false);
     const CreateCourse = async () => {
         var data = await courseAPI.createCourse(dataCreate);
@@ -21,7 +26,16 @@ const CourseAdminBody = () => {
             setReload(true);
         }
         else {
-            alert('Create Pack Fail !')
+            alert('Create Course Fail !')
+        }
+    }
+    const CreateCourseLevel = async () => {
+        var data = await courseAPI.createCourseLevel(dataCreateLevel);
+        if (data.status === 200) {
+            setReload(true);
+        }
+        else {
+            alert('Create Course Level Fail !')
         }
     }
     const getAllCategory = async () => {
@@ -55,6 +69,13 @@ const CourseAdminBody = () => {
         });
 
     }
+    const saveDataAndShow = (id, name) => {
+        setNameCourse(name);
+        setCreateLevel((prevState) => {
+            return { ...prevState, courseId: id };
+        });
+        handleShowLevel();
+    }
 
     useEffect(() => {
         setReload(false);
@@ -66,35 +87,60 @@ const CourseAdminBody = () => {
             <HeaderAdmin buttonName={"Create Course"} handleShow={handleShow} />
             <div className='row p-3'>
                 {course.map((value) => (
-
-                    <div className='col-xl-3 m-1'>
-                        <div style={{
-                            width: '90%',
-                            height: '100px',
-                            lineHeight: '85px',
-                            border: '3px solid blue',
-                            borderRadius: '20px',
-                            textAlign: 'center',
-                            fontSize: '30px',
-                            fontWeight: 'bold',
-                            color: 'blue'
-                        }}>
-                            {value.name}
+                    <div className='row' style={{ width: '100%', marginTop: '10px' }}>
+                        <div className='col-xl-3 p-2' style={{ borderRight: '1px solid black' }}>
+                            <div style={{
+                                width: '90%',
+                                height: '70px',
+                                lineHeight: '60px',
+                                border: '1px solid blue',
+                                borderRadius: '20px',
+                                textAlign: 'center',
+                                fontSize: '25px',
+                                fontWeight: 'bold',
+                                color: 'blue'
+                            }} onClick={() => saveDataAndShow(value.id, value.name)}>
+                                {value.name}
+                            </div>
                         </div>
-                    </div>
+                        <div className='col-xl-9'>
+                            <div className='row'>
 
+                                {value.courseLevelResponseDTOs.map((level) => (
+                                    <div className='col-xl-3 p-2'>
+                                        <div style={{
+                                            width: '90%',
+                                            height: '50px',
+                                            lineHeight: '50px',
+                                            border: '1px solid blue',
+                                            textAlign: 'center',
+                                            fontSize: '20px',
+                                            color: 'blue',
+                                            margin: '0px auto'
+                                        }}>
+                                            {level.name}
+                                        </div>
+                                    </div>
+
+                                ))}
+                            </div>
+
+                        </div>
+
+                    </div>
                 ))}
+
             </div>
 
             {/* modal */}
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Create Category</Modal.Title>
+                    <Modal.Title>Create Course</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Form.Group className="mb-3">
-                            <Form.Label>Category Name :</Form.Label>
+                            <Form.Label>Course Name :</Form.Label>
                             <Form.Control
                                 type="text"
                                 autoFocus
@@ -102,6 +148,15 @@ const CourseAdminBody = () => {
                                     const val = e.target.value;
                                     setCreate((prevState) => {
                                         return { ...prevState, name: val };
+                                    });
+                                }}
+                            />
+                            <Form.Label>Course Descriptions (|) :</Form.Label>
+                            <textarea type="text" name="topic" id="topic" style={{ width: '100%' }} rows='3'
+                                onChange={(e) => {
+                                    const val = e.target.value;
+                                    setCreate((prevState) => {
+                                        return { ...prevState, description: val };
                                     });
                                 }}
                             />
@@ -132,6 +187,58 @@ const CourseAdminBody = () => {
                         Close
                     </Button>
                     <Button variant="primary" onClick={() => { handleClose(); CreateCourse(); }}>
+                        Create
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            {/* modal */}
+            <Modal show={showLevel} onHide={handleCloseLevel}>
+                <Modal.Header closeButton>
+                    <Modal.Title>{nameCourse}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Level Name :</Form.Label>
+                            <Form.Control
+                                type="text"
+                                autoFocus
+                                onChange={(e) => {
+                                    const val = e.target.value;
+                                    setCreateLevel((prevState) => {
+                                        return { ...prevState, name: val };
+                                    });
+                                }}
+                            />
+                            <Form.Label>Level Description :</Form.Label>
+                            <Form.Control
+                                type="text"
+                                onChange={(e) => {
+                                    const val = e.target.value;
+                                    setCreateLevel((prevState) => {
+                                        return { ...prevState, description: val };
+                                    });
+                                }}
+                            />
+                            <Form.Label>Level Price :</Form.Label>
+                            <Form.Control
+                                type="text"
+                                onChange={(e) => {
+                                    const val = e.target.value;
+                                    setCreateLevel((prevState) => {
+                                        return { ...prevState, price: val };
+                                    });
+                                }}
+                            />
+
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCloseLevel}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={() => { handleCloseLevel(); CreateCourseLevel(); }}>
                         Create
                     </Button>
                 </Modal.Footer>

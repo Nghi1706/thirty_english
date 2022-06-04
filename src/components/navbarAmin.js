@@ -16,6 +16,9 @@ const NavbarAdmin = () => {
                     <Link to="/CoursesAdmin" className='linkcss'>
                         <i className="zmdi zmdi-view-dashboard"></i> Course
                     </Link>
+                    <Link to="/Register" className='linkcss'>
+                        <i className="zmdi zmdi-view-dashboard"></i> Register
+                    </Link>
                     <Link to="/Login" className='linkcss'>
                         <i className="zmdi zmdi-view-dashboard"></i> Logout
                     </Link>
@@ -33,9 +36,6 @@ const NavbarTeacher = () => {
             </header>
             <ul className="nav">
                 <li className='liCss'>
-                    <Link to="/VocabularyPacks" className='linkcss'>
-                        <i className="zmdi zmdi-view-dashboard"></i> Pack Vocabulary
-                    </Link>
                     <Link to="/CoursesTeacher" className='linkcss'>
                         <i className="zmdi zmdi-view-dashboard"></i> Courses
                     </Link>

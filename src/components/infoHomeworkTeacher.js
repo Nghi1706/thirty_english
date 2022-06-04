@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavbarTeacher } from './navbarAmin'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
 import { useLocation } from 'react-router-dom';
 import homeworksAPI from '../api/homeworkAPI';
 
@@ -45,7 +45,7 @@ export const InfoHomeworkTeacher = () => {
     }
     const getQuestions = async () => {
         try {
-            var questions = await homeworksAPI.getQuestionbyId(id);
+            var questions = await homeworksAPI.getQuestionsTeacherById(id);
             if (questions.status === 200) {
                 setQuestion(questions.data)
             }
@@ -118,6 +118,14 @@ export const InfoHomeworkTeacher = () => {
                                         <div className='col-xl-9'>
                                             {qstion.answerFour}
 
+                                        </div>
+                                    </div>
+                                    <div className='row'>
+                                        <div className='col-xl-3'>
+                                            correct answer :
+                                        </div>
+                                        <div className='col-xl-9' style={{ color: 'red' }}>
+                                            {qstion.correctAnswer}
                                         </div>
                                     </div>
 

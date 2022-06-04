@@ -17,8 +17,12 @@ const courseAPI = {
         return axiosRequest.post(url, params);
     },
     gelAllCourseStudent: (email) => {
-        const url = 'studentCourse/getStudentCourseByStudentName/' +  email;
+        const url = 'studentCourse/getStudentCourseByStudentName/' + email;
         return axiosRequest.get(url);
+    },
+    createCourseLevel: (params) => {
+        const url = 'courseLevel/createCourseLevel';
+        return axiosRequest.post(url, params);
     },
 
 }

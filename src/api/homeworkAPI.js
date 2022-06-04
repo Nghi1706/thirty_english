@@ -16,7 +16,13 @@ const homeworksAPI = {
         const url = 'question/createQuestion';
         return axiosRequest.post(url, params);
     },
-
-
+    getQuestionsTeacherById: (id) => {
+        const url = 'question/checkListQuestionsByHomeworkId/' + id;
+        return axiosRequest.get(url);
+    },
+    createHomeworkResult: (params) => {
+        const url = 'homeworkResult/createHomeworkResult';
+        return axiosRequest.post(url, params);
+    },
 }
 export default homeworksAPI

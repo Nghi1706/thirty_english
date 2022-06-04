@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import Header from './header'
 export const MyCourses = () => {
     const email = localStorage.getItem('email');
-    console.log(email)
     const [myCourses, setCourses] = useState([]);
     const getMycourses = async () => {
         var data = await courseAPI.gelAllCourseStudent(email);
@@ -20,7 +19,6 @@ export const MyCourses = () => {
         getMycourses();
 
     }, [])
-    console.log(myCourses)
     return (
         <div className='container-fluid'>
             <div className='row'>
@@ -37,13 +35,13 @@ export const MyCourses = () => {
                                 <center>
                                     <div className='myCourse'>
                                         <div className='headerMyCourse'>
-                                            {course.courseName}
+                                            {course.courseLevelName}
                                         </div>
                                         <div className='bodyMyCourse'>
-                                            Click to open your course !
+                                            <Link to={'/VocabularyPacksS'} className='buttonMyCourse' state={{ courseLevelId: course.courseLevelId }} >Vocabulary</Link>
                                         </div>
                                         <div className='footerMyCourse'>
-                                            <Link to={'/Homeworks'} className='buttonMyCourse' state={{ courseId: course.courseId }} >Home works</Link>
+                                            <Link to={'/Homeworks'} className='buttonMyCourse' state={{ courseLevelId: course.courseLevelId }} >Home works</Link>
                                         </div>
 
                                     </div>

@@ -34,7 +34,7 @@ export default function RegisterBody() {
             <div className='row'>
                 <div className='col-xl-6 formRegis'>
                     <center>
-                        <Link to={'/'}>
+                        <Link to={role !== 'admin' ? '/' : '/employeeManager'}>
                             <img className="rounded-circle" alt="logo" src={logo} width='130' />
                         </Link>
                         <form>

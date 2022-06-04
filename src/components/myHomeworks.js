@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CSS/myCourse.css'
-import courseAPI from '../api/courseAPI';
+import homeworksAPI from '../api/homeworkAPI';
 import { Link } from "react-router-dom";
 import Header from './header'
 import { useLocation } from 'react-router-dom';
@@ -9,20 +9,20 @@ import { useLocation } from 'react-router-dom';
 export const MyHomeworks = () => {
     const [myHomeworks, setCourses] = useState([]);
     const location = useLocation()
-    const id = location.state.courseId;
+    const id = location.state.courseLevelId;
     const getMyHomeworks = async () => {
-        var data = await courseAPI.gelHomeworkById(id);
+        var data = await homeworksAPI.gelHomeworkById(id);
         if (data.status === 200) {
             setCourses(data.data);
         } else {
             alert('fetch data fail !');
         }
     }
+    console.log(myHomeworks)
     useEffect(() => {
         getMyHomeworks();
 
     }, [])
-    console.log(MyHomeworks)
     return (
         <div className='container-fluid'>
             <div className='row'>
@@ -34,18 +34,18 @@ export const MyHomeworks = () => {
                 </div>
                 <div className='col-xl-8'>
                     <div className='row'>
-                        {myHomeworks.map((course) => (
+                        {myHomeworks.map((homework) => (
                             <div className='col-xl-4 p-3 mt-3'>
                                 <center>
                                     <div className='myCourse'>
                                         <div className='headerMyCourse'>
-                                            {course.courseName}
+                                            {homework.name}
                                         </div>
                                         <div className='bodyMyCourse'>
-                                            Click to open your course !
+                                            {homework.description}
                                         </div>
                                         <div className='footerMyCourse'>
-                                            <Link to={'/Homeworks'} className='buttonMyCourse' state={{ courseId: course.courseId }} >Home works</Link>
+                                            <Link to={'/DoHomework'} className='buttonMyCourse' state={{ id: homework.id }} >Do now !</Link>
                                         </div>
 
                                     </div>

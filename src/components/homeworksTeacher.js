@@ -17,13 +17,13 @@ export const HomeworksTeacher = () => {
     const [homeworks, setHomeworks] = useState([]);
     const [isReload, setReload] = useState(false);
     const location = useLocation()
-    const id = location.state.idCourse;
+    const id = location.state.idCourseLevel;
     const email = localStorage.getItem('email');
     const [name, setName] = useState('');
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [dataCreate, setCreate] = useState({
-        courseId: id,
+        courseLevelId: id,
         teacherUsername: email,
         name: "",
         description: ""
