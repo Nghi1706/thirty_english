@@ -31,19 +31,20 @@ export const MyCourses = () => {
                 <div className='col-xl-8'>
                     <div className='row'>
                         {myCourses.map((course) => (
-                            <div className='col-xl-4 p-3 mt-3'>
+                            <div className='col-xl-4 mt-3'>
                                 <center>
                                     <div className='myCourse'>
                                         <div className='headerMyCourse'>
                                             {course.courseLevelName}
                                         </div>
                                         <div className='bodyMyCourse'>
-                                            <Link to={'/VocabularyPacksS'} className='buttonMyCourse' state={{ courseLevelId: course.courseLevelId }} >Vocabulary</Link>
+                                            <Link to={'/Videos'} state={{ courseLevelId: course.courseLevelId }}  ><button type="button" className='buttonMyCourse'>Start study</button></Link>
                                         </div>
                                         <div className='footerMyCourse'>
-                                            <Link to={'/Homeworks'} className='buttonMyCourse' state={{ courseLevelId: course.courseLevelId }} >Home works</Link>
-                                        </div>
+                                            <Link to={'/VocabularyPacksS'} state={{ courseLevelId: course.courseLevelId }} ><button type="button" className='buttonMyCourse'>Vocabulary</button></Link>
 
+                                            <Link to={'/Homeworks'} state={{ courseLevelId: course.courseLevelId }}  ><button type="button" className='buttonMyCourse'>Homework</button></Link>
+                                        </div>
                                     </div>
                                 </center>
                             </div>

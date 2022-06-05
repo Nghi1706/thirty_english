@@ -13,6 +13,7 @@ import { HeaderTeacher } from './headerTeacher';
 const VocabularyPack = () => {
     const location = useLocation();
     const id = location.state.idCourseLevel;
+    const idCourse = location.state.idCourse;
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -52,7 +53,7 @@ const VocabularyPack = () => {
                 </div>
                 <div className='col-xl-10'>
                     <div className='row' style={{ padding: '20px', height: '80px', marginTop: '0px' }}>
-                        <HeaderTeacher setValue={setName} search={searchPacks} handleShow={handleShow} id={id} buttonName={"Create Pack"} />
+                        <HeaderTeacher setValue={setName} search={searchPacks} handleShow={handleShow} id={id} idCourse={idCourse} buttonName={"Create Pack"} />
 
                         <Packs allVocabulary={allVocabulary} isTeacher={true} />
                     </div>

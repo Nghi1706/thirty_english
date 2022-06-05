@@ -49,7 +49,7 @@ function header() {
                         <Link to='/Courses' style={itemHeader}>Courses</Link>
                         {/* <Link to="/VocabularyPacksS" style={itemHeader}>Vocabulary</Link> */}
                         <Link to="/Blog" style={itemHeader}>Blog</Link>
-                        <Link to="/ForLecturers" style={itemHeader}>For Lectures</Link>
+                        {/* <Link to="/ForLecturers" style={itemHeader}>For Lectures</Link> */}
                         <Link to="/myCourses" style={itemHeader}>My Courses</Link>
                         <Link to="/Register" style={itemHeader}>Register</Link>
                         <Link to="/Login" style={itemHeader}>Logout</Link>

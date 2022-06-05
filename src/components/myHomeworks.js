@@ -45,7 +45,7 @@ export const MyHomeworks = () => {
                                             {homework.description}
                                         </div>
                                         <div className='footerMyCourse'>
-                                            <Link to={'/DoHomework'} className='buttonMyCourse' state={{ id: homework.id }} >Do now !</Link>
+                                            <Link to={'/DoHomework'} state={{ id: homework.id }} ><button type="button" className='buttonMyCourse'>Do now</button></Link>
                                         </div>
 
                                     </div>

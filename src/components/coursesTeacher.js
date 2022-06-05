@@ -46,7 +46,7 @@ const CoursesTeacher = () => {
                                     <div className='row'>
                                         {course.categoryName.map((categori) => (
                                             <div className='col-xl-3'>
-                                                <Link to={'/uploadvideo'} state={{ idCourse: course.id, idCategory: categori }}><button type="button" className='buttonStyle'>{categori}</button></Link>
+                                                <button type="button" className='buttonStyle'>{categori}</button>
 
                                             </div>
                                         ))}
@@ -65,7 +65,7 @@ const CoursesTeacher = () => {
                                     <div className='row'>
                                         {course.courseLevelResponseDTOs.map((data) => (
                                             <div className='col-xl-3'>
-                                                <Link to={'/VocabularyPacks'} state={{ idCourseLevel: data.id }}><button type="button" className='buttonStyle'>{data.name}</button></Link>
+                                                <Link to={'/VocabularyPacks'} state={{ idCourse: course.id, idCourseLevel: data.id }}><button type="button" className='buttonStyle'>{data.name}</button></Link>
                                             </div>
                                         ))}
                                     </div>
