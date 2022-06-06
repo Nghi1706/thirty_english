@@ -25,6 +25,7 @@ import Payment from './payment';
 import DoHomework from './doHomework';
 import HomeworkResult from './homeworkResult';
 import Playvideo from './playvideo';
+import UpvideoAdmin from './upvideoAdmin';
 export default function AppRouter() {
     var role = localStorage.getItem('role');
     return (
@@ -48,6 +49,7 @@ export default function AppRouter() {
                 <Route path="/Payment" element={(role === 'student') ? <Payment /> : <Login />} />
                 {/* admin */}
                 <Route path="/CoursesAdmin" element={(role === 'admin') ? <CourseAdmin /> : <Login />} />
+                <Route path="/UpVideoAdmin" element={(role === 'admin') ? <UpvideoAdmin /> : <Login />} />
                 <Route path="/EmployeeManager" element={(role === 'admin') ? <EmployeeManager /> : <Login />} />
                 <Route path="/CoursesUpload" element={(role === 'admin') ? <UpLoadCourse /> : <Login />} />
                 {/* teacher */}

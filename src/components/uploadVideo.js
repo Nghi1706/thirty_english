@@ -6,6 +6,7 @@ import { NavbarTeacher } from './navbarAmin';
 import Button from 'react-bootstrap/Button'
 import { useLocation } from 'react-router-dom';
 import Form from 'react-bootstrap/Form'
+import videoAPI from '../api/video';
 import {
     ref,
     uploadBytesResumable, getDownloadURL
@@ -18,7 +19,7 @@ const UploadVideo = () => {
     const [file, setFile] = useState('');
     const [fileName, setFileName] = useState('');
     const [isShow, setShow] = useState(false);
-    const upload = () => {
+    const upload = async () => {
         setShow(true);
         if (file == null)
             return;
@@ -36,8 +37,15 @@ const UploadVideo = () => {
             (err) => console.log(err),
             () => {
                 // download url
-                getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                getDownloadURL(uploadTask.snapshot.ref).then( async (url) => {
                     console.log(url);
+                    var upvideo = await videoAPI.createVideo({courseLevelId : location.state.idCategory, name: fileName, urlFisebase: url })
+                    if( upvideo.status !== 200){
+                        alert('upload again !');
+                    }
+                    else {
+                        alert('upload success !')
+                    }
                 });
             }
         );

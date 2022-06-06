@@ -24,6 +24,10 @@ const courseAPI = {
         const url = 'courseLevel/createCourseLevel';
         return axiosRequest.post(url, params);
     },
+    updateCourse: (params) => {
+        const url = 'course/editCourse';
+        return axiosRequest.put(url, params);
+    }
 
 }
 export default courseAPI

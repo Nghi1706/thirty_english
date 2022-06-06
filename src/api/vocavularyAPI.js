@@ -28,6 +28,13 @@ const vocabularyAPI = {
         const url = 'vocabularyPack/getVocabularyPacksByCourseLevelId/' + string;
         return axiosRequest.get(url);
     },
-
+    editVocabulary: (params) => {
+        const url = 'vocabulary/editVocabulary';
+        return axiosRequest.put(url, params);
+    },
+    deleteVocabulary: (id) => {
+        const url = 'vocabulary/deleteVocabulary/'+ id;
+        return axiosRequest.delete(url);
+    },
 }
 export default vocabularyAPI
