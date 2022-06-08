@@ -30,6 +30,14 @@ const UpvideoAdmin = () => {
     }
   }
   const deleteVideo = async () => {
+    var data = await videoAPI.deleteVideo(dataEdit.id);
+    if (data.status === 200) {
+      setReload(true)
+    }
+    else {
+      alert('fetch data fail');
+    }
+
     console.log(dataEdit)
 
   }

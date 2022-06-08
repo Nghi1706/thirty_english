@@ -27,6 +27,14 @@ const courseAPI = {
     updateCourse: (params) => {
         const url = 'course/editCourse';
         return axiosRequest.put(url, params);
+    },
+    updateCourseLevel: (params) => {
+        const url = 'courseLevel/editCourseLevel';
+        return axiosRequest.put(url, params);
+    },
+    deleteCourseLevels: (id) => {
+        const url = 'courseLevel/deleteCourseLevel/' + id;
+        return axiosRequest.delete(url);
     }
 
 }

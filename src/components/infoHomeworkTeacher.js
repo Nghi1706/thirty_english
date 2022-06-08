@@ -12,6 +12,7 @@ export const InfoHomeworkTeacher = () => {
     const [isReload, setReload] = useState(false);
     const location = useLocation()
     const id = location.state.id;
+    const idCourseLevel = location.state.idCourseLevel;
     const [dataCreate, setCreate] = useState({
         homeworkId: id,
         topic: "",
@@ -23,17 +24,29 @@ export const InfoHomeworkTeacher = () => {
     });
 
     const createQuestion = async () => {
-        try {
-            var newQuestion = await homeworksAPI.createQuestion(dataCreate);
-            if (newQuestion.status === 200) {
-                setReload(true);
-            }
-            else {
-                alert("create fail !")
-            }
-        } catch (error) {
+        var newQuestion = await homeworksAPI.createQuestion(dataCreate);
+        if (newQuestion.status === 200) {
+            setCreate((prevState) => {
+                return {
+                    ...prevState,
+                    homeworkId: id,
+                    topic: "",
+                    answerOne: "",
+                    answerTwo: "",
+                    answerThree: "",
+                    answerFour: "",
+                    correctAnswer: "answerOne"
+                };
+            });
+            document.getElementById('topic').value = '';
+            document.getElementById('answerOne').value = '';
+            document.getElementById('answerTwo').value = '';
+            document.getElementById('answerThree').value = '';
+            document.getElementById('answerFour').value = '';
+            setReload(true);
+        }
+        else {
             alert("create fail !")
-
         }
 
     }
@@ -85,7 +98,7 @@ export const InfoHomeworkTeacher = () => {
                                     border: '1px solid black',
                                     marginBottom: '10px'
                                 }}>
-                                    <h5>{'Topic' + index + 1 + ': ' + qstion.topic}</h5>
+                                    <h5>{'Topic ' + (index + 1) + ': ' + qstion.topic}</h5>
                                     <div className='row'>
                                         <div className='col-xl-3'>
                                             answerOne :
@@ -192,9 +205,16 @@ export const InfoHomeworkTeacher = () => {
                     </div>
 
                     <center>
-                        <Button variant="primary" onClick={createQuestion}>
+                        <Button variant="primary" style={{ width: '100px', borderRadius: '20px' }} onClick={createQuestion}>
                             Create
                         </Button>
+                    </center>
+                    <center>
+                        <Link to={'/HomeworksTeacher'} state={{ idCourseLevel: idCourseLevel }}>
+                            <Button variant="success" style={{ width: '100px', borderRadius: '20px', marginTop: '100px' }} onClick={createQuestion}>
+                                Done
+                            </Button>
+                        </Link>
                     </center>
                 </div>
             </div>

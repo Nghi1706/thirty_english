@@ -11,6 +11,10 @@ const videoAPI = {
     updateVideo: (params) => {
         const url = 'video/editYoutubeUrl';
         return axiosRequest.put(url, params);
+    },
+    deleteVideo: (id) => {
+        const url = 'video/deleteVideo/' + id;
+        return axiosRequest.delete(url);
     }
 
 }

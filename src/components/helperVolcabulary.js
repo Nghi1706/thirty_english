@@ -8,9 +8,9 @@ const Packs = ({ allVocabulary, isTeacher }) => {
             {allVocabulary.map((vocabulary) => (
                 <div className='col-xl-3' key={vocabulary.id}>
                     <center>
-                        <div className="card mb-3" style={{ width: "100%", textAlign: 'center', borderColor: '#659DBD' }}>
-                            <div className="card-body">
-                                <h5 className="card-text" style={{ color: '#659DBD' }}>{vocabulary.name}</h5>
+                        <div className="card mb-3" style={{ width: "100%", textAlign: 'center', borderColor: '#659DBD', height: '150px' }}>
+                            <div className="card-body" style={{ height: '100%' }}>
+                                <h5 className="card-text" style={{ color: '#659DBD', height: '60%' }}>{vocabulary.name}</h5>
                                 <center><Link type='button' to={isTeacher ? "/VocabularyPart" : "/VocabularyPartS"} state={{ id: vocabulary.id }} className="btn btn-outline-primary" style={{ color: '#659DBD' }}>View Pack</Link></center>
                             </div>
                         </div>

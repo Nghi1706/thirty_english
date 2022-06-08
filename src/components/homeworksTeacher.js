@@ -41,7 +41,6 @@ export const HomeworksTeacher = () => {
             alert("create fail !")
 
         }
-
     }
     const searchHomework = () => {
 
@@ -81,7 +80,7 @@ export const HomeworksTeacher = () => {
                                     <div className='col-xl-10'>
                                         <center><h1>Home Works</h1>
                                             {homeworks.map((homework) => (
-                                                <Link to={"/InfoHomeworkTeacher"} style={{ textDecoration: 'none' }} state={{ id: homework.id }}>
+                                                <Link to={"/InfoHomeworkTeacher"} style={{ textDecoration: 'none' }} state={{ id: homework.id, idCourseLevel: id }}>
                                                     <div className='homeworkDiv' >
                                                         {homework.name}
                                                     </div>

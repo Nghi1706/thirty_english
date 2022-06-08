@@ -54,7 +54,7 @@ const DoHomework = () => {
 
     return (
         <div className='container-fluid'>
-            <div className='row'>
+            <div className='row' style={{ position: 'fixed', width: '100%' }}>
                 <Header />
             </div>
             <div className='row'>
@@ -62,8 +62,8 @@ const DoHomework = () => {
 
                 </div>
                 <div className='col-xl-8'>
-                    <center><h1>Let's do it!</h1></center>
-                    <div className='row'>
+                    <center style={{ marginTop: '100px' }}><h1>Let's do it!</h1></center>
+                    <div className='row p-xl-5'>
                         {question.map((questionShow, index) => {
 
                             dataRequest.push({
@@ -73,28 +73,33 @@ const DoHomework = () => {
 
                             return (
 
-                                <div className='col-xl-6 p-2'>
+                                <div className='col-xl-12 p-2'>
                                     <div style={{
                                         width: '100%',
-                                        minHeight: '150px',
+                                        minHeight: '100px',
                                         color: '#263238',
                                         borderRadius: '20px',
-                                        padding: '10px',
+                                        padding: '25px',
                                         border: '1px solid black',
                                         marginBottom: '10px'
                                     }}>
-                                        <h5>{'Topic' + index + 1 + ': ' + questionShow.topic}</h5>
-                                        <input type="radio" name={`answerCheck${index}`} value="answerOne" onChange={() => correctAnswer(index)} />
-                                        <label style={{ width: '90%' }} >{questionShow.answerOne}</label><br />
-                                        <input type="radio" name={`answerCheck${index}`} value="answerTwo" onChange={() => correctAnswer(index)} />
-                                        <label style={{ width: '90%' }} >{questionShow.answerTwo}</label><br />
-                                        <input type="radio" name={`answerCheck${index}`} value="answerThree" onChange={() => correctAnswer(index)} />
-                                        <label style={{ width: '90%' }} >{questionShow.answerThree}</label><br />
-                                        <input type="radio" name={`answerCheck${index}`} value="answerFour" onChange={() => correctAnswer(index)} />
-                                        <label style={{ width: '90%' }} >{questionShow.answerFour}</label><br />
+                                        <h5>{'Topic ' + (index + 1) + ': ' + questionShow.topic}</h5>
+                                        <div className='row'>
+                                            <div className='col-xl-6'>
+                                                <input type="radio" name={`answerCheck${index}`} value="answerOne" onChange={() => correctAnswer(index)} />
+                                                <label style={{ width: '90%' }} >{questionShow.answerOne}</label><br />
+                                                <input type="radio" name={`answerCheck${index}`} value="answerTwo" onChange={() => correctAnswer(index)} />
+                                                <label style={{ width: '90%' }} >{questionShow.answerTwo}</label><br />
+                                            </div>
+                                            <div className='col-xl-6'>
 
+                                                <input type="radio" name={`answerCheck${index}`} value="answerThree" onChange={() => correctAnswer(index)} />
+                                                <label style={{ width: '90%' }} >{questionShow.answerThree}</label><br />
+                                                <input type="radio" name={`answerCheck${index}`} value="answerFour" onChange={() => correctAnswer(index)} />
+                                                <label style={{ width: '90%' }} >{questionShow.answerFour}</label><br />
 
-
+                                            </div>
+                                        </div>
 
                                     </div>
                                 </div>
@@ -105,7 +110,7 @@ const DoHomework = () => {
                         })}
                     </div>
 
-                    <center>
+                    <center style={{ marginBottom: '30px' }}>
                         <Button variant="primary" onClick={sendData}>
                             Submit
                         </Button>

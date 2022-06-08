@@ -11,10 +11,13 @@ import { Link } from 'react-router-dom';
 const CourseAdminBody = () => {
     const [show, setShow] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
+    const [showEditCourseLevel, setShowEditCourseLevel] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const handleShowEdit = () => setShowEdit(true);
     const handleCloseEdit = () => setShowEdit(false)
+    const handleShowEditCourseLevel = () => setShowEditCourseLevel(true);
+    const handleCloseEditCourseLevel = () => setShowEditCourseLevel(false)
     const [showLevel, setShowLevel] = useState(false);
     const [isEdit, setEdit] = useState(false);
     const handleCloseLevel = () => setShowLevel(false);
@@ -23,6 +26,13 @@ const CourseAdminBody = () => {
     const [course, setCourse] = useState([])
     const [nameCourse, setNameCourse] = useState('')
     const [dataEdit, setDateEdit] = useState({ id: '', name: '' })
+    const [dataEditCourseLevel, setDataEditCourseLevel] = useState({
+        id: 0,
+        name: "",
+        price: 0,
+        description: "",
+        courseId: 0
+    })
     const [dataCreate, setCreate] = useState({ name: "", categoties: [], description: "" });
     const [dataCreateLevel, setCreateLevel] = useState({ name: "", description: "", price: 0, courseId: '' });
     const [isReload, setReload] = useState(false);
@@ -39,9 +49,44 @@ const CourseAdminBody = () => {
         handleShowEdit();
 
     }
+    const showEditingCouresLevel = (dataE) => {
+        setDataEditCourseLevel((prevState) => {
+            return {
+                ...prevState,
+                id: dataE.id,
+                name: dataE.name,
+                price: dataE.price,
+                description: dataE.description,
+                courseId: dataE.courseId
+            }
+        })
+        handleShowEditCourseLevel();
+
+    }
+
     const editCourse = async () => {
         console.log(dataEdit);
         var edit = await courseAPI.updateCourse(dataEdit);
+        if (edit.status === 200) {
+            setReload(true);
+        }
+        else {
+            alert('Edit Course Fail !')
+        }
+    }
+    const editCourseLevel = async () => {
+        console.log(dataEditCourseLevel)
+        var edit = await courseAPI.updateCourseLevel(dataEditCourseLevel);
+        if (edit.status === 200) {
+            setReload(true);
+        }
+        else {
+            alert('Edit Course Fail !')
+        }
+    }
+    const deleteCourseLevel = async () => {
+        console.log(dataEditCourseLevel)
+        var edit = await courseAPI.deleteCourseLevels(dataEditCourseLevel.id);
         if (edit.status === 200) {
             setReload(true);
         }
@@ -105,6 +150,7 @@ const CourseAdminBody = () => {
         });
         handleShowLevel();
     }
+    console.log(course)
 
     useEffect(() => {
         setReload(false);
@@ -156,10 +202,17 @@ const CourseAdminBody = () => {
                         <div className='col-xl-9'>
                             <div className='row'>
 
-                                {value.courseLevelResponseDTOs.map((level) => (
-                                    
-                                    <div className='col-xl-3 p-2'>
-                                        <Link to={'/UpVideoAdmin'} style={{textDecoration : 'none'}} state={{id:level.id}}>
+                                {value.courseLevelResponseDTOs.map((level) =>
+
+                                (<div className='col-xl-3 p-2'>
+                                    <Link to={isEdit ? '#' : '/UpVideoAdmin'}
+                                        style={{ textDecoration: 'none' }}
+                                        state={{ id: level.id }}
+                                        onClick={
+                                            isEdit
+                                                ? () => showEditingCouresLevel(level)
+                                                : () => { console.log('none Edit') }}
+                                    >
                                         <div style={{
                                             width: '90%',
                                             height: '50px',
@@ -172,10 +225,9 @@ const CourseAdminBody = () => {
                                         }}>
                                             {level.name}
                                         </div>
-                                        </Link>
-                                    </div>
-
-                                ))}
+                                    </Link>
+                                </div>)
+                                )}
                             </div>
 
                         </div>
@@ -325,6 +377,64 @@ const CourseAdminBody = () => {
                     </Button>
                     <Button variant="primary" onClick={() => { handleCloseEdit(); editCourse(); }}>
                         Update
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            {/* modal */}
+            <Modal show={showEditCourseLevel} onHide={handleCloseEditCourseLevel}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Edit Course Level</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Level Name :</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder={dataEditCourseLevel.name}
+                                autoFocus
+                                onChange={(e) => {
+                                    const val = e.target.value;
+                                    setDataEditCourseLevel((prevState) => {
+                                        return { ...prevState, name: val };
+                                    });
+                                }}
+                            />
+                            <Form.Label>Level Description :</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder={dataEditCourseLevel.description}
+                                onChange={(e) => {
+                                    const val = e.target.value;
+                                    setDataEditCourseLevel((prevState) => {
+                                        return { ...prevState, description: val };
+                                    });
+                                }}
+                            />
+                            <Form.Label>Level Price :</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder={dataEditCourseLevel.price}
+                                onChange={(e) => {
+                                    const val = e.target.value;
+                                    setDataEditCourseLevel((prevState) => {
+                                        return { ...prevState, price: val };
+                                    });
+                                }}
+                            />
+
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCloseEditCourseLevel}>
+                        Close
+                    </Button>
+                    <Button variant="warning" onClick={() => { handleCloseEditCourseLevel(); deleteCourseLevel(); }}>
+                        Delete
+                    </Button>
+                    <Button variant="primary" onClick={() => { handleCloseEditCourseLevel(); editCourseLevel(); }}>
+                        Create
                     </Button>
                 </Modal.Footer>
             </Modal>
