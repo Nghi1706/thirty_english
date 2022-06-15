@@ -86,26 +86,32 @@ const DoHomework = () => {
                                         <h5>{'Topic ' + (index + 1) + ': ' + questionShow.topic}</h5>
                                         <div className='row'>
                                             <div className='col-xl-6'>
-                                                <input type="radio" name={`answerCheck${index}`} value="answerOne" onChange={() => correctAnswer(index)} />
-                                                <label style={{ width: '90%' }} >{questionShow.answerOne}</label><br />
-                                                <input type="radio" name={`answerCheck${index}`} value="answerTwo" onChange={() => correctAnswer(index)} />
-                                                <label style={{ width: '90%' }} >{questionShow.answerTwo}</label><br />
+                                                <span>
+                                                    <input style={{ marginRight: '15px' }} type="radio" name={`answerCheck${index}`} value="answerOne" onChange={() => correctAnswer(index)} />
+                                                    <label style={{ width: '90%' }} >{questionShow.answerOne}</label>
+                                                </span>
+                                                <span>
+                                                    <input style={{ marginRight: '15px' }} type="radio" name={`answerCheck${index}`} value="answerTwo" onChange={() => correctAnswer(index)} />
+                                                    <label style={{ width: '90%' }} >{questionShow.answerTwo}</label>
+                                                </span>
+
                                             </div>
                                             <div className='col-xl-6'>
+                                                <span>
+                                                    <input style={{ marginRight: '15px' }} type="radio" name={`answerCheck${index}`} value="answerThree" onChange={() => correctAnswer(index)} />
+                                                    <label style={{ width: '90%' }} >{questionShow.answerThree}</label>
+                                                </span>
+                                                <span>
+                                                    <input style={{ marginRight: '15px' }} type="radio" name={`answerCheck${index}`} value="answerFour" onChange={() => correctAnswer(index)} />
+                                                    <label style={{ width: '90%' }} >{questionShow.answerFour}</label>
+                                                </span>
 
-                                                <input type="radio" name={`answerCheck${index}`} value="answerThree" onChange={() => correctAnswer(index)} />
-                                                <label style={{ width: '90%' }} >{questionShow.answerThree}</label><br />
-                                                <input type="radio" name={`answerCheck${index}`} value="answerFour" onChange={() => correctAnswer(index)} />
-                                                <label style={{ width: '90%' }} >{questionShow.answerFour}</label><br />
 
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
-
-
-
                             )
                         })}
                     </div>

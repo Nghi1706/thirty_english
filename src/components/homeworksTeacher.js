@@ -29,17 +29,22 @@ export const HomeworksTeacher = () => {
         description: ""
     });
     const createHomework = async () => {
-        try {
-            var newHomework = await homeworksAPI.createHomework(dataCreate);
-            if (newHomework.status === 200) {
-                setReload(true);
-            }
-            else {
-                alert("create fail !")
-            }
-        } catch (error) {
-            alert("create fail !")
+        if (dataCreate.name === '' || dataCreate.description === '') {
 
+        }
+        else {
+            try {
+                var newHomework = await homeworksAPI.createHomework(dataCreate);
+                if (newHomework.status === 200) {
+                    setReload(true);
+                }
+                else {
+                    alert("create fail !")
+                }
+            } catch (error) {
+                alert("create fail !")
+
+            }
         }
     }
     const searchHomework = () => {

@@ -31,17 +31,22 @@ const Payment = () => {
             'courseLevelId': courseSelected.id,
             'studentName': email
         }
-        try {
-            var join = await courseAPI.createStudentCourse(dataCreate);
-            if (join.status === 200) {
-                window.location = '/myCourses'
-            }
-            else {
-                alert('join fail !')
-            }
-        } catch (error) {
-            alert('join fail !')
+        if (dataCreate.courseLevelId === 0 || dataCreate.studentName === '') {
 
+        }
+        else {
+            try {
+                var join = await courseAPI.createStudentCourse(dataCreate);
+                if (join.status === 200) {
+                    window.location = '/myCourses'
+                }
+                else {
+                    alert('join fail !')
+                }
+            } catch (error) {
+                alert('join fail !')
+
+            }
         }
 
     }

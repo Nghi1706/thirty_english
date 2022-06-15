@@ -33,12 +33,17 @@ const VocabularyPack = () => {
         }
     }
     const createPackVocabulary = async () => {
-        var data = await vocabularyAPI.createVocabularyPack(dataCreate);
-        if (data.status === 200) {
-            setReload(true);
+        if (dataCreate.name === '' || dataCreate.teachName === '') {
+
         }
         else {
-            alert('Create Pack Fail !')
+            var data = await vocabularyAPI.createVocabularyPack(dataCreate);
+            if (data.status === 200) {
+                setReload(true);
+            }
+            else {
+                alert('Create Pack Fail !')
+            }
         }
     }
     useEffect(() => {

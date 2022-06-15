@@ -24,12 +24,17 @@ const VocabularyPart = () => {
     const [name, setName] = useState('');
     const createPartVocabulary = async () => {
         console.log(dataCreate)
-        var data = await vocabularyAPI.createVocabularyPart(dataCreate);
-        if (data.status === 200) {
-            setReload(true);
+        if (dataCreate.name === '') {
+
         }
         else {
-            alert('Create Pack Fail !')
+            var data = await vocabularyAPI.createVocabularyPart(dataCreate);
+            if (data.status === 200) {
+                setReload(true);
+            }
+            else {
+                alert('Create Pack Fail !')
+            }
         }
     }
     const searchAllPartsbyID = async () => {

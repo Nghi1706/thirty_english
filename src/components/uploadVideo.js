@@ -20,9 +20,9 @@ const UploadVideo = () => {
     const [fileName, setFileName] = useState('');
     const [isShow, setShow] = useState(false);
     const upload = async () => {
-        setShow(true);
-        if (file == null)
+        if (file == null || fileName === '')
             return;
+        setShow(true);
         const storageRef = ref(storage, `/courses/${location.state.idCourse}/${location.state.idCategory}/${fileName}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
         uploadTask.on(
@@ -37,14 +37,16 @@ const UploadVideo = () => {
             (err) => console.log(err),
             () => {
                 // download url
-                getDownloadURL(uploadTask.snapshot.ref).then( async (url) => {
+                getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
                     console.log(url);
-                    var upvideo = await videoAPI.createVideo({courseLevelId : location.state.idCategory, name: fileName, urlFisebase: url })
-                    if( upvideo.status !== 200){
+                    var upvideo = await videoAPI.createVideo({ courseLevelId: location.state.idCategory, name: fileName, urlFisebase: url })
+                    if (upvideo.status !== 200) {
                         alert('upload again !');
+                        setShow(false);
                     }
                     else {
                         alert('upload success !')
+                        setShow(false);
                     }
                 });
             }

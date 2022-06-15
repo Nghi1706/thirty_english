@@ -20,14 +20,14 @@ const Vocabulary = () => {
     const handleShow = () => setShow(true);
     const [allVocabulary, setAllVocabulary] = useState([]);
     const [dataCreate, setCreate] = useState({ ensWord: "", vnWord: "", spelling: "", wordType: "", example: "", vocabulatyPartId: id });
-    const [dataEdit, setEdit] = useState({ id : 0, ensWord: "", vnWord: "", spelling: "", wordType: "", example: "", vocabulatyPartId: id });
+    const [dataEdit, setEdit] = useState({ id: 0, ensWord: "", vnWord: "", spelling: "", wordType: "", example: "", vocabulatyPartId: id });
     const [isReload, setReload] = useState(false);
     const [name, setName] = useState('');
     const searchVocabulary = () => {
 
     }
-    const deleteVocabulary = async () =>{
-        var deleter =  await vocabularyAPI.deleteVocabulary(dataEdit.id);
+    const deleteVocabulary = async () => {
+        var deleter = await vocabularyAPI.deleteVocabulary(dataEdit.id);
         if (deleter.status === 200) {
             setReload(true);
         }
@@ -37,12 +37,17 @@ const Vocabulary = () => {
     }
     const createVocabulary = async () => {
         console.log(dataCreate)
-        var data = await vocabularyAPI.createVocabulary(dataCreate);
-        if (data.status === 200) {
-            setReload(true);
+        if (dataCreate.ensWord === '' || dataCreate.example === '' || dataCreate.spelling === '' || dataCreate.vnWord === '' || dataCreate.wordType === '') {
+
         }
         else {
-            alert('Create Vocabulary Fail !')
+            var data = await vocabularyAPI.createVocabulary(dataCreate);
+            if (data.status === 200) {
+                setReload(true);
+            }
+            else {
+                alert('Create Vocabulary Fail !')
+            }
         }
     }
     const EditVocabulary = async () => {
@@ -64,15 +69,16 @@ const Vocabulary = () => {
     }
     const showEditing = (data) => {
         setEdit((prevState) => {
-            return { ...prevState, 
-                id : data.id,
+            return {
+                ...prevState,
+                id: data.id,
                 ensWord: data.ensWord,
-                vnWord : data.vnWord,
+                vnWord: data.vnWord,
                 spelling: data.spelling,
                 wordType: data.wordType,
-                example:data.example,
+                example: data.example,
                 vocabulatyPartId: id
-             };
+            };
         });
         handleShowEdit();
     }
@@ -266,7 +272,7 @@ const Vocabulary = () => {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="warning" onClick={() => {handleCloseEdit() ; deleteVocabulary()}}>
+                    <Button variant="warning" onClick={() => { handleCloseEdit(); deleteVocabulary() }}>
                         Delete
                     </Button>
                     <Button variant="secondary" onClick={handleCloseEdit}>

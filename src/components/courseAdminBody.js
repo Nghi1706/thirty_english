@@ -95,21 +95,31 @@ const CourseAdminBody = () => {
         }
     }
     const CreateCourse = async () => {
-        var data = await courseAPI.createCourse(dataCreate);
-        if (data.status === 200) {
-            setReload(true);
+        if (dataCreate.description === '' || dataCreate.categoties.length === 0 || dataCreate.name === '') {
+
         }
         else {
-            alert('Create Course Fail !')
+            var data = await courseAPI.createCourse(dataCreate);
+            if (data.status === 200) {
+                setReload(true);
+            }
+            else {
+                alert('Create Course Fail !')
+            }
         }
     }
     const CreateCourseLevel = async () => {
-        var data = await courseAPI.createCourseLevel(dataCreateLevel);
-        if (data.status === 200) {
-            setReload(true);
+        if (dataCreateLevel.courseId === '' || dataCreateLevel.description === '' || dataCreateLevel.name === '' || dataCreateLevel.price === 0) {
+
         }
         else {
-            alert('Create Course Level Fail !')
+            var data = await courseAPI.createCourseLevel(dataCreateLevel);
+            if (data.status === 200) {
+                setReload(true);
+            }
+            else {
+                alert('Create Course Level Fail !')
+            }
         }
     }
     const getAllCategory = async () => {
