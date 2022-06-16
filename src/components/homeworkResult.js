@@ -32,7 +32,7 @@ const homeworkResult = () => {
                             padding: '20px'
                         }}>
                             <h5>{index + 1 + "." + data.topic}</h5>
-                            <h6>Your answer: {data.yourAnswer}</h6>
+                            <h6>Your answer: {data.yourAnwser}</h6>
                             <h6 style={{ color: 'red' }}>Correct answer: {data.correctAnswer}</h6>
                         </div>
                     </div>

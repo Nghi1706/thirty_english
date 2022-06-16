@@ -41,10 +41,20 @@ const UploadVideo = () => {
                     console.log(url);
                     var upvideo = await videoAPI.createVideo({ courseLevelId: location.state.idCategory, name: fileName, urlFisebase: url })
                     if (upvideo.status !== 200) {
+                        setFile('');
+                        setFileName('')
+                        setPercent(0)
+                        document.getElementById('name').value = ''
+                        document.getElementById('file').value = ''
                         alert('upload again !');
                         setShow(false);
                     }
                     else {
+                        setFile('');
+                        setFileName('')
+                        setPercent(0)
+                        document.getElementById('name').value = ''
+                        document.getElementById('file').value = ''
                         alert('upload success !')
                         setShow(false);
                     }
@@ -70,9 +80,9 @@ const UploadVideo = () => {
                                 <Form>
                                     <Form.Group className="mb-3" controlId="formBasicEmail">
                                         <Form.Label>Nhập tên file</Form.Label>
-                                        <Form.Control type="text" onChange={(e) => { setFileName(e.target.value) }} />
+                                        <Form.Control type="text" id='name' onChange={(e) => { setFileName(e.target.value) }} />
                                         <Form.Label>Chọn file</Form.Label>
-                                        <Form.Control type="file" onChange={(e) => { setFile(e.target.files[0]) }} />
+                                        <Form.Control type="file" id='file' onChange={(e) => { setFile(e.target.files[0]) }} />
                                     </Form.Group>
 
                                     <center>

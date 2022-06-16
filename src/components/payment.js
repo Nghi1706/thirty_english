@@ -16,7 +16,7 @@ import { useLocation } from 'react-router-dom';
 
 const Payment = () => {
     const email = localStorage.getItem('email');
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState((() => { return 1 === 0 }));
     const handleClose = () => setShow(false);
     const data = useLocation();
     const [courseSelected, setCourse] = useState({
@@ -36,6 +36,7 @@ const Payment = () => {
         }
         else {
             try {
+                console.log(dataCreate)
                 var join = await courseAPI.createStudentCourse(dataCreate);
                 if (join.status === 200) {
                     window.location = '/myCourses'
@@ -74,6 +75,19 @@ const Payment = () => {
         });
         setReload(true);
 
+    }
+    if (course.courseLevelResponseDTOs.length > 0) {
+        var dataFirst = course.courseLevelResponseDTOs[0];
+        // setCourse((prevState) => {
+        //     return {
+        //         ...prevState,
+        //         id: dataFirst.id,
+        //         name: dataFirst.name,
+        //         price: dataFirst.price,
+        //         description: dataFirst.description,
+        //         courseId: dataFirst.courseId
+        //     };
+        // });
     }
     useEffect(() => {
         setReload(false);
@@ -131,7 +145,7 @@ const Payment = () => {
                 </div>
                 <div className='col-xl-8'>
                     <div className='row' style={{ height: '100px', alignItems: 'flex-end' }}>
-                        <select className="form-select form-select-lg" id='courseLevelId' onChange={showCourseSelected}
+                        <select className="form-select form-select-lg" id='courseLevelId' onChange={() => showCourseSelected()}
                             style={{
                                 height: '60px',
                                 width: '250px',
@@ -140,6 +154,7 @@ const Payment = () => {
                                 borderRadius: ' 25px',
                                 paddingLeft: '25px'
                             }}>
+                            <option value={-1}>choose now</option>
                             {course.courseLevelResponseDTOs.map((courseLevel) => (
                                 <option value={courseLevel.id} > {courseLevel.name}</option>
                             ))}
@@ -216,7 +231,7 @@ const Payment = () => {
                                         fontSize: '20px',
                                         marginTop: '80px',
                                         border: 'none'
-                                    }} onClick={join}
+                                    }} onClick={() => join()}
                                     >Complete checkout</button>
                                 </center>
                             </div>
@@ -238,7 +253,7 @@ const Payment = () => {
                     <Button variant="secondary" onClick={() => { handleClose(); window.location = '/' }} >
                         Yes
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="primary" onClick={() => handleClose()}>
                         No
                     </Button>
                 </Modal.Footer>

@@ -3,7 +3,9 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import logo from '../img/logo.png';
 import './CSS/header.css';
-function header() {
+
+function Header() {
+    const email = localStorage.getItem('email');
     const role = localStorage.getItem('role');
     const itemHeader = {
         color: "white",
@@ -12,6 +14,16 @@ function header() {
         marginRight: 50,
         textDecoration: 'none',
         fontSize: '20px'
+    }
+    const itemEmail = {
+        marginTop: '5px',
+        color: "black",
+        minWidth: 100,
+        textAlign: 'center',
+        marginRight: 10,
+        textDecoration: 'none',
+        fontSize: '15px',
+        fontWeight: 'bold'
     }
     const textLogo = {
         flat: 'left',
@@ -53,6 +65,7 @@ function header() {
                         <Link to="/myCourses" style={itemHeader}>My Courses</Link>
                         <Link to="/Register" style={itemHeader}>Register</Link>
                         <Link to="/Login" style={itemHeader}>Logout</Link>
+                        <Link to="#" style={itemEmail}>{email}</Link>
                     </Nav>
                 ) :
                     (
@@ -68,4 +81,4 @@ function header() {
         </>
     )
 }
-export default header;
+export default Header;
