@@ -4,6 +4,10 @@ const homeworksAPI = {
         const url = 'homework/getHomeworkByCourseId/' + id;
         return axiosRequest.get(url);
     },
+    getHomeworkResultByName: (email) => {
+        const url = 'homeworkResult/getHomeworkResultByHomeworkUsername/' + email;
+        return axiosRequest.get(url);
+    },
     createHomework: (params) => {
         const url = 'homework/createHomework';
         return axiosRequest.post(url, params);
