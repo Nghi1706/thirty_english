@@ -44,6 +44,9 @@ const DoHomework = () => {
                 setWasDone(true)
             }
         }
+        else {
+            setWasDone(false)
+        }
 
     }
     const sendData = async () => {
@@ -72,8 +75,8 @@ const DoHomework = () => {
     }
     console.log(question)
     useEffect(() => {
-        getMyHomeworks();
         getHistory();
+        getMyHomeworks();
     }, [])
 
     return (
@@ -157,25 +160,48 @@ const DoHomework = () => {
                                                         <h5>{'Topic ' + (index + 1) + ': ' + questionShow.topic}</h5>
                                                         <div className='row'>
                                                             <div className='col-xl-6'>
-                                                                <span>
-                                                                    <input style={{ marginRight: '15px' }} type="radio" name={`answerCheck${index}`} value="answerOne" onChange={() => correctAnswer(index)} />
-                                                                    <label style={{ width: '90%' }} >{questionShow.answerOne}</label>
-                                                                </span>
-                                                                <span>
-                                                                    <input style={{ marginRight: '15px' }} type="radio" name={`answerCheck${index}`} value="answerTwo" onChange={() => correctAnswer(index)} />
-                                                                    <label style={{ width: '90%' }} >{questionShow.answerTwo}</label>
-                                                                </span>
+                                                                <div className='row'>
+                                                                    <div className='col-xl-1'>
+                                                                        <input type="radio" style={{ marginTop: '5px', width: '15px', height: '15px' }} name={`answerCheck${index}`} value="answerOne" onChange={() => correctAnswer(index)} />
+                                                                    </div>
+                                                                    <div className='col-xl-11'>
+                                                                        <label style={{ width: '90%' }} >{questionShow.answerOne}</label>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div className='row'>
+                                                                    <div className='col-xl-1'>
+                                                                        <input style={{ marginTop: '5px', width: '15px', height: '15px' }} type="radio" name={`answerCheck${index}`} value="answerTwo" onChange={() => correctAnswer(index)} />
+
+                                                                    </div>
+                                                                    <div className='col-xl-11'>
+                                                                        <label style={{ width: '90%' }} >{questionShow.answerTwo}</label>
+
+
+                                                                    </div>
+                                                                </div>
+
+
 
                                                             </div>
                                                             <div className='col-xl-6'>
-                                                                <span>
-                                                                    <input style={{ marginRight: '15px' }} type="radio" name={`answerCheck${index}`} value="answerThree" onChange={() => correctAnswer(index)} />
-                                                                    <label style={{ width: '90%' }} >{questionShow.answerThree}</label>
-                                                                </span>
-                                                                <span>
-                                                                    <input style={{ marginRight: '15px' }} type="radio" name={`answerCheck${index}`} value="answerFour" onChange={() => correctAnswer(index)} />
-                                                                    <label style={{ width: '90%' }} >{questionShow.answerFour}</label>
-                                                                </span>
+                                                                <div className='row'>
+                                                                    <div className='col-xl-1'>
+                                                                        <input style={{ marginTop: '5px', width: '15px', height: '15px' }} type="radio" name={`answerCheck${index}`} value="answerThree" onChange={() => correctAnswer(index)} />
+                                                                    </div>
+                                                                    <div className='col-xl-11'>
+                                                                        <label style={{ width: '90%' }} >{questionShow.answerThree}</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div className='row'>
+                                                                    <div className='col-xl-1'>
+                                                                        <input style={{ marginTop: '5px', width: '15px', height: '15px' }} type="radio" name={`answerCheck${index}`} value="answerFour" onChange={() => correctAnswer(index)} />
+                                                                    </div>
+                                                                    <div className='col-xl-11'>
+                                                                        <label style={{ width: '90%' }} >{questionShow.answerFour}</label>
+                                                                    </div>
+                                                                </div>
+
 
 
                                                             </div>

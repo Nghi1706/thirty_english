@@ -8,7 +8,7 @@ import account from '../api/accountAPI';
 import { Link } from 'react-router-dom';
 
 export default function RegisterBody() {
-    const [dataObject, setdata] = useState({ email: '', fullname: '', password: '', phone: '', role: 0 });
+    const [dataObject, setdata] = useState({ email: '', fullname: '', password: '', phone: '', role: 1 });
     var role = localStorage.getItem('role');
     var listRole = [
         { "value": 1, "label": "admin" },
@@ -19,15 +19,22 @@ export default function RegisterBody() {
         if (role !== 'admin') {
             dataObject.role = 2
         }
+        try {
+            console.log(dataObject);
+            var data = await account.adminRegister(dataObject);
+            if (data.status === 200) {
+                console.log(data.body);
+                if (window.confirm("create account success !")) {
+                    window.location = '/Login'
+                }
+            }
+            else {
+                alert('create fail !')
+            }
+        } catch (error) {
+            alert('create fail !')
+        }
 
-        console.log(dataObject);
-        var data = await account.adminRegister(dataObject);
-        if (data.status === 200) {
-            console.log(data.body);
-        }
-        else {
-            console.log("register fail");
-        }
     }
     return (
         <div className='container-fluid'>
@@ -56,7 +63,7 @@ export default function RegisterBody() {
                                 }} />
                             </div>
                             <div className='form-group'>
-                                <input type="text" className="form-control" id="password" placeholder="Password" onChange={(e) => {
+                                <input type="password" className="form-control" id="password" placeholder="Password" onChange={(e) => {
                                     const val = e.target.value;
                                     setdata((prevState) => {
                                         return { ...prevState, password: val };
@@ -64,7 +71,7 @@ export default function RegisterBody() {
                                 }} />
                             </div>
                             <div className='form-group'>
-                                <input type="text" className="form-control" id="confirmPW" placeholder="Confirm Password" />
+                                <input type="password" className="form-control" id="confirmPW" placeholder="Confirm Password" />
                             </div>
                             <div className='form-group'>
                                 <input type="text" className="form-control" id="name" placeholder="Phone Number" onChange={(e) => {

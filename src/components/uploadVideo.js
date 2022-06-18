@@ -20,7 +20,7 @@ const UploadVideo = () => {
     const [fileName, setFileName] = useState('');
     const [isShow, setShow] = useState(false);
     const upload = async () => {
-        if (file == null || fileName === '')
+        if (file == null || fileName === '' || file === '')
             return;
         setShow(true);
         const storageRef = ref(storage, `/courses/${location.state.idCourse}/${location.state.idCategory}/${fileName}`)
