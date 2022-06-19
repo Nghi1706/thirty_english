@@ -26,6 +26,12 @@ const DoHomework = () => {
             alert('fetch data fail !');
         }
     }
+    const movehistory = (data) => {
+        console.log(data)
+        localStorage.setItem('homeworkResult', '');
+        localStorage.setItem('homeworkResult', JSON.stringify(data));
+        window.location = '/HomeworkResult'
+    }
     const getHistory = async () => {
         var hito = await homeworksAPI.getHomeworkResultByName(email)
         if (hito.data.length > 0) {
@@ -118,7 +124,9 @@ const DoHomework = () => {
                                                         <div className='col-xl-6'>
                                                             <h3 style={{ color: 'red' }}>{data.point}</h3>
                                                         </div>
-
+                                                        <center>
+                                                            <button type="button" class="btn btn-info" style={{ width: '30%', backgroundColor: 'wheat', border: 'none', borderRadius: '20px' }} onClick={() => movehistory(data)}>View</button>
+                                                        </center>
 
                                                     </div>
                                                 </div>
